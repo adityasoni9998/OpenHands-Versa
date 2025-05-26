@@ -290,10 +290,10 @@ Here is the task:\n{instance['Question']}\n\n"""
                 model_answer_raw = event.final_thought
                 break
             elif isinstance(event, CmdRunAction):
-                model_answer_raw = event.thought
+                model_answer_raw = 'no_answer_obtained'
                 break
             elif isinstance(event, MessageAction):
-                model_answer_raw = event.content
+                model_answer_raw = 'no_answer_obtained'
                 break
 
     # attempt to parse model_answer

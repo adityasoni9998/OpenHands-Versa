@@ -36,12 +36,12 @@ echo "OPENHANDS_VERSION: $OPENHANDS_VERSION"
 echo "MODEL_CONFIG: $MODEL_CONFIG"
 echo "LEVELS: $LEVELS"
 
-COMMAND="poetry run python ./evaluation/benchmarks/gaia/run_infer.py \
+COMMAND="/home/ubuntu/miniconda3/envs/openhands/bin/poetry run python ./evaluation/benchmarks/gaia/run_infer.py \
   --agent-cls $AGENT \
   --llm-config $MODEL_CONFIG \
   --max-iterations 54 \
   --level $LEVELS \
-  --data-split validation \
+  --data-split test \
   --eval-num-workers $NUM_WORKERS \
   --eval-note ${OPENHANDS_VERSION}_${LEVELS}"
 
