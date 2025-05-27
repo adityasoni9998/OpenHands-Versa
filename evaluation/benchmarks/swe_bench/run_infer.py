@@ -64,7 +64,7 @@ from openhands.utils.async_utils import call_async_from_sync
 from openhands.utils.shutdown_listener import sleep_if_should_continue
 
 USE_HINT_TEXT = os.environ.get('USE_HINT_TEXT', 'false').lower() == 'true'
-RUN_WITH_BROWSING = os.environ.get('RUN_WITH_BROWSING', 'false').lower() == 'true'
+RUN_WITH_BROWSING = os.environ.get('RUN_WITH_BROWSING', 'true').lower() == 'true'
 BenchMode = Literal['swe', 'swt', 'swt-ci']
 
 
@@ -119,8 +119,7 @@ def get_instruction(instance: pd.Series, metadata: EvalMetadata) -> MessageActio
             if mode.endswith('ci')
             else ''
         )
-        instruction = f"""\
-<uploaded_files>
+        instruction = f"""<uploaded_files>
 /workspace/{workspace_dir_name}
 </uploaded_files>
 I've uploaded a python code repository in the directory {workspace_dir_name}. Consider the following issue description:
@@ -316,14 +315,7 @@ def get_config(
             metadata.llm_config, metadata.eval_output_dir, instance['instance_id']
         )
     )
-    # TODO
-    agent_config = AgentConfig(
-        # codeact_enable_jupyter=False, #TODO: is this needed
-        codeact_enable_browsing=RUN_WITH_BROWSING,  # TODO: this must be True
-        codeact_enable_llm_editor=False,
-        # condenser=metadata.condenser_config, #TODO: use the BrowserOutputCondenser
-        enable_prompt_extensions=False,
-    )
+    agent_config = AgentConfig(codeact_enable_browsing=RUN_WITH_BROWSING)
     print(agent_config)
     config.set_agent_config(agent_config)
     return config
@@ -487,36 +479,22 @@ def initialize_runtime(
             f'Expected to find python interpreter from testbed, but got: {str(obs)}',
         )
     action = CmdRunAction(command='mkdir -p /workspace/downloads')
-    obs = runtime.run_action(action)
+    runtime.run_action(action)
 
     # BLOCK github.com for the agent. Ensures fairness of evaluation
     action = CmdRunAction(command='echo "0.0.0.0 github.com" >> /etc/hosts')
-    obs = runtime.run_action(action)
+    runtime.run_action(action)
 
+    # Allow agent to run tests in GUI-based browser. Only needed for the validation split of SWE-Bench M.
     if 'chartjs' in workspace_dir_name.lower():
-        # action = CmdRunAction(command="python3 -m http.server 8000 &")
-        # obs = runtime.run_action(action)
-        # print(f"server observation: {obs}")
-        # import time
-        # time.sleep(10)
         action = CmdRunAction(
             command='wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"     && tar xvf firefox.tar.bz2 -C /opt && ln -s /opt/firefox/firefox /usr/local/bin/firefox'
         )
-        obs = runtime.run_action(action)
-        print(obs)
-
+        runtime.run_action(action)
         action = CmdRunAction(command='Xvfb :99 -screen 0 1024x768x16 &')
-        obs = runtime.run_action(action)
-        print(obs)
-
+        runtime.run_action(action)
         action = CmdRunAction(command='export DISPLAY=:99')
-        obs = runtime.run_action(action)
-        print(obs)
-
-        # action = CmdRunAction(command='cd /workspace/chartjs__Chart.js__3.0 && npm test -- --grep="Scale"')
-        # obs = runtime.run_action(action)
-        # print(obs)
-
+        runtime.run_action(action)
     logger.info('-' * 30)
     logger.info('END Runtime Initialization Fn')
     logger.info('-' * 30)
@@ -636,37 +614,6 @@ def complete_runtime(
         f'Failed to remove binary files: {str(obs)}',
     )
 
-    # action = CmdRunAction(command='git reset -- package-lock.json **/package-lock.json "**/*.pdf')
-    # action.set_hard_timeout(600)
-    # logger.info(action, extra={'msg_type': 'ACTION'})
-    # obs = runtime.run_action(action)
-    # logger.info(obs, extra={'msg_type': 'OBSERVATION'})
-    # assert_and_raise(
-    #     isinstance(obs, CmdOutputObservation) and obs.exit_code == 0,
-    #     f'Failed to reset package-lock.json and PDF files: {str(obs)}',
-    # )
-
-    # # Remove new package-lock.json files from staging
-    # action = CmdRunAction(command='git rm --cached -f --ignore-unmatch package-lock.json **/package-lock.json')
-    # action.set_hard_timeout(600)
-    # logger.info(action, extra={'msg_type': 'ACTION'})
-    # obs = runtime.run_action(action)
-    # logger.info(obs, extra={'msg_type': 'OBSERVATION'})
-    # assert_and_raise(
-    #     isinstance(obs, CmdOutputObservation) and obs.exit_code == 0,
-    #     f'Failed to remove newly added package-lock.json files: {str(obs)}',
-    # )
-
-    # # Remove new PDF files from staging
-    # action = CmdRunAction(command='git rm --cached -f --ignore-unmatch "**/*.pdf"')
-    # action.set_hard_timeout(600)
-    # logger.info(action, extra={'msg_type': 'ACTION'})
-    # obs = runtime.run_action(action)
-    # logger.info(obs, extra={'msg_type': 'OBSERVATION'})
-    # assert_and_raise(
-    #     isinstance(obs, CmdOutputObservation) and obs.exit_code == 0,
-    #     f'Failed to remove newly added PDF files: {str(obs)}',
-    # )
     action = CmdRunAction(
         command=f'git diff --no-color --cached {instance["base_commit"]}'
     )
@@ -680,7 +627,6 @@ def complete_runtime(
     while n_retries < 5:
         action = CmdRunAction(
             command=f'git diff --no-color --cached {instance["base_commit"]} -- ":(exclude)package-lock.json" ":(exclude)**/package-lock.json" ":(exclude)*.pdf" ":(exclude)**/*.pdf" > patch.diff'
-            # command=f'git diff --no-color --cached {instance["base_commit"]} > patch.diff'
         )
         action.set_hard_timeout(max(300 + 100 * n_retries, 600))
         logger.info(action, extra={'msg_type': 'ACTION'})
@@ -689,7 +635,6 @@ def complete_runtime(
         n_retries += 1
         if isinstance(obs, CmdOutputObservation):
             if obs.exit_code == 0:
-                # TODO: FileRead will result in Markdown content being returned. Use cat?
                 # Read the patch file
                 action = FileReadAction(path='patch.diff')
                 action.set_hard_timeout(max(300 + 100 * n_retries, 600))
@@ -794,9 +739,6 @@ def process_instance(
         logger.info(
             f'Got git diff for instance {instance.instance_id}:\n--------\n{git_patch}\n--------'
         )
-    # except Exception:
-    #     # print(e)
-    #     runtime.close()
     finally:
         runtime.close()
     # ==========================================
@@ -989,11 +931,6 @@ if __name__ == '__main__':
             instances = prepare_dataset(
                 swe_bench_tests, cur_output_file, args.eval_n_limit, eval_ids=eval_ids
             )
-            # try:
-            #     instances = instances[instances['repo'] == 'quarto-dev/quarto-cli']
-            # except Exception as _:
-            #     pass
-            # instances = instances.head(135)
             if len(instances) > 0 and not isinstance(
                 instances['PASS_TO_PASS'][instances['PASS_TO_PASS'].index[0]], str
             ):

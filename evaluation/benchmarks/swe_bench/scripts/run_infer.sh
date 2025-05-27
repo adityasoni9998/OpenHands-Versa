@@ -89,9 +89,15 @@ if [ "$MODE" != "swe" ]; then
   EVAL_NOTE="${EVAL_NOTE}-${MODE}"
 fi
 
+POETRY_BIN=$(which poetry)
+if [ -z "$POETRY_BIN" ]; then
+  echo "Poetry not found in PATH."
+  exit 1
+fi
+
 function run_eval() {
   local eval_note="${1}"
-  COMMAND="/home/ubuntu/miniconda3/envs/openhands/bin/poetry run python evaluation/benchmarks/swe_bench/run_infer.py \
+  COMMAND="$POETRY_BIN  run python evaluation/benchmarks/swe_bench/run_infer.py \
     --agent-cls $AGENT \
     --llm-config $MODEL_CONFIG \
     --max-iterations $MAX_ITER \
