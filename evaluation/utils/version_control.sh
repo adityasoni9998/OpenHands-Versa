@@ -39,12 +39,6 @@ checkout_original_branch() {
     git checkout $current_branch
 }
 
-POETRY_BIN=$(which poetry)
-if [ -z "$POETRY_BIN" ]; then
-  echo "Poetry not found in PATH."
-  exit 1
-fi
-
 get_openhands_version() {
     # IMPORTANT: Because Agent's prompt changes fairly often in the rapidly evolving codebase of OpenHands
     # We need to track the version of Agent in the evaluation to make sure results are comparable

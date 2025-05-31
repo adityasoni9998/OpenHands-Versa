@@ -352,16 +352,12 @@ def _process_instance_wrapper(
                     + f'[Encountered after {max_retries} retries. Please check the logs and report the issue.]'
                     + '-' * 10
                 )
-                # Raise an error after all retries & stop the evaluation
                 logger.exception(e)
                 return EvalOutput(
                     instance_id=instance.instance_id,
                     test_result={},
                     error=error,
                 )
-                # raise RuntimeError(
-                #     f'Maximum error retries reached for instance {instance.instance_id}'
-                # ) from e
             msg = (
                 '-' * 10
                 + '\n'

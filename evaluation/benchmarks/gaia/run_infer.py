@@ -50,13 +50,9 @@ AGENT_CLS_TO_FAKE_USER_RESPONSE_FN = {
     'CodeActAgent': functools.partial(codeact_user_response, encapsulate_solution=True),
 }
 
-# TODO: change this message as per the finish tool you are using.
 AGENT_CLS_TO_INST_SUFFIX = {
     'CodeActAgent': 'When you think you have solved the question, please use the finish tool and include your final answer in the message parameter of the finish tool. Your final answer MUST be encapsulated within <solution> and </solution>.\n\n'
 }
-# AGENT_CLS_TO_INST_SUFFIX = {
-#     'CodeActAgent': 'When you think you have solved the question, please first send your answer to user through message and then exit using the finish tool.\n\n'
-# }
 
 
 def get_config(
@@ -87,9 +83,6 @@ def get_config(
         logger.info('Agent config not provided, using default settings')
         agent_config = config.get_agent_config(metadata.agent_class)
         print(agent_config)
-        # agent_config.enable_prompt_extensions = False
-        # agent_config.enable_som_visual_browsing = True
-
     return config
 
 
@@ -282,19 +275,15 @@ Here is the task:\n{instance['Question']}\n\n"""
     if state is None:
         raise ValueError('State should not be None.')
 
-    model_answer_raw = ''
+    model_answer_raw = 'no_answer_obtained'
     # get the last message or thought from the agent
     for event in reversed(state.history):
         if event.source == 'agent':
             if isinstance(event, AgentFinishAction):
                 model_answer_raw = event.final_thought
                 break
-            elif isinstance(event, CmdRunAction):
+            else:
                 model_answer_raw = 'no_answer_obtained'
-                break
-            elif isinstance(event, MessageAction):
-                model_answer_raw = 'no_answer_obtained'
-                break
 
     # attempt to parse model_answer
     model_answer = re.findall(r'<solution>(.*?)</solution>', model_answer_raw)

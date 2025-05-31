@@ -109,28 +109,12 @@ def init_task_env(runtime: Runtime, hostname: str, env_llm_config: LLMConfig):
     assert obs.exit_code == 0
 
 
-# TODO
 def codeact_user_response(state: State) -> str:
     msg = (
         'Please continue working on the task on whatever approach you think is suitable.\n'
         'If you think you have solved the task, please use the finish tool to end the interaction.\n'
         'IMPORTANT: YOU SHOULD NEVER ASK FOR HUMAN HELP.\n'
     )
-
-    # Planner will add user messages to event stream, so we shouldn't encourage agent to exit!
-    # if state.history:
-    #     # check if the agent has tried to talk to the user 3 times, if so, let the agent know it can give up
-    #     user_msgs = [
-    #         event
-    #         for event in state.history
-    #         if isinstance(event, MessageAction) and event.source == 'user'
-    #     ]
-    #     if len(user_msgs) >= 2:
-    #         # let the agent know that it can give up when it has tried 3 times
-    #         return (
-    #             msg
-    #             + 'If you want to give up, run: <execute_bash> exit </execute_bash>.\n'
-    #         )
     return msg
 
 

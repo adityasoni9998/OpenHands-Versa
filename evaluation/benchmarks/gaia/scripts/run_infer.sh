@@ -9,7 +9,8 @@ AGENT=$3
 EVAL_LIMIT=$4
 LEVELS=$5
 NUM_WORKERS=$6
-AGENT_CONFIG=$7
+SPLIT=$7
+AGENT_CONFIG=$8
 
 if [ -z "$NUM_WORKERS" ]; then
   NUM_WORKERS=1
@@ -20,6 +21,11 @@ checkout_eval_branch
 if [ -z "$AGENT" ]; then
   echo "Agent not specified, use default CodeActAgent"
   AGENT="CodeActAgent"
+fi
+
+if [ -z "$SPLIT" ]; then
+  SPLIT="test"
+  echo "Split not specified, use default $SPLIT"
 fi
 
 get_openhands_version
@@ -35,13 +41,14 @@ echo "AGENT: $AGENT"
 echo "OPENHANDS_VERSION: $OPENHANDS_VERSION"
 echo "MODEL_CONFIG: $MODEL_CONFIG"
 echo "LEVELS: $LEVELS"
+echo "SPLIT: $SPLIT"
 
-COMMAND="/home/ubuntu/miniconda3/envs/openhands/bin/poetry run python ./evaluation/benchmarks/gaia/run_infer.py \
+COMMAND="$POETRY_BIN run python ./evaluation/benchmarks/gaia/run_infer.py \
   --agent-cls $AGENT \
   --llm-config $MODEL_CONFIG \
-  --max-iterations 54 \
+  --max-iterations 60 \
   --level $LEVELS \
-  --data-split test \
+  --data-split $SPLIT \
   --eval-num-workers $NUM_WORKERS \
   --eval-note ${OPENHANDS_VERSION}_${LEVELS}"
 

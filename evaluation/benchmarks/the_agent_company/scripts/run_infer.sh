@@ -151,7 +151,7 @@ while IFS= read -r task_image; do
     docker pull $task_image
 
     # Build the Python command
-    COMMAND="/home/ubuntu/miniconda3/envs/openhands/bin/poetry run python evaluation/benchmarks/the_agent_company/run_infer.py \
+    COMMAND="$POETRY_BIN run python evaluation/benchmarks/the_agent_company/run_infer.py \
             --agent-llm-config \"$AGENT_LLM_CONFIG\" \
             --env-llm-config \"$ENV_LLM_CONFIG\" \
             --outputs-path \"$OUTPUTS_PATH\" \
