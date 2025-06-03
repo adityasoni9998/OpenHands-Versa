@@ -10,13 +10,12 @@
   <a href="https://huggingface.co/spaces/OpenHands/evaluation"><img src="https://img.shields.io/badge/Benchmark%20score-000?logoColor=FFE165&logo=huggingface&style=for-the-badge" alt="Evaluation Benchmark Score"></a>
   <hr>
 </div> -->
-
-Welcome to OpenHands-Versa. This repository is a reference implementation of OpenHands-Versa that will allow you to reproduce the experiments in the paper.
-
 <div align="center">
   <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are Generalist Problem Solvers</h1>
   <img src="./docs/static/img/OpenHands-Versa.png" width="900">
 </div>
+
+Welcome to OpenHands-Versa. This repository is a reference implementation of OpenHands-Versa that will allow you to reproduce the experiments in the paper.
 
 ## Overview
 Modern human labor is characterized by specialization; we train for years and develop particular tools that allow us to perform well across a variety of tasks. In addition, AI agents have been specialized for domains such as software engineering, web navigation, and workflow automation.
