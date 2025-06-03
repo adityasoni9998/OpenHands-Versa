@@ -1,12 +1,6 @@
 <a name="readme-top"></a>
 
-<div align="center">
-  <img src="./docs/static/img/logo.png" alt="Logo" width="200">
-  <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are Generalist Problem Solvers</h1>
-</div>
-
-
-<div align="center">
+<!-- <div align="center">
   <a href="https://github.com/All-Hands-AI/OpenHands/blob/main/LICENSE"><img src="https://img.shields.io/github/license/All-Hands-AI/OpenHands?style=for-the-badge&color=blue" alt="MIT License"></a>
   <br/>
   <a href="https://github.com/All-Hands-AI/OpenHands/blob/main/CREDITS.md"><img src="https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white" alt="Credits"></a>
@@ -15,28 +9,25 @@
   <a href="https://arxiv.org/abs/2407.16741"><img src="https://img.shields.io/badge/Paper%20on%20Arxiv-000?logoColor=FFE165&logo=arxiv&style=for-the-badge" alt="Paper on Arxiv"></a>
   <a href="https://huggingface.co/spaces/OpenHands/evaluation"><img src="https://img.shields.io/badge/Benchmark%20score-000?logoColor=FFE165&logo=huggingface&style=for-the-badge" alt="Evaluation Benchmark Score"></a>
   <hr>
+</div> -->
+
+Welcome to OpenHands-Versa. This repository is a reference implementation of OpenHands-Versa that will allow you to reproduce the experiments in the paper.
+
+<div align="center">
+  <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are Generalist Problem Solvers</h1>
+  <img src="./docs/static/img/OpenHands-Versa.png" width="900">
 </div>
 
-Welcome to OpenHands-Versa. More details will be posted here soon.
+## Overview
+Modern human labor is characterized by specialization; we train for years and develop particular tools that allow us to perform well across a variety of tasks. In addition, AI agents have been specialized for domains such as software engineering, web navigation, and workflow automation.
+However, this results in agents that are good for one thing but fail to generalize beyond their intended scope. One reason for this is that agent developers provide a highly specialized set of tools or make architectural decisions optimized for a specific use case or benchmark.
+In this work, we ask the question: what is the minimal set of general tools that can be used to achieve high performance across a diverse set of tasks? Our answer is OpenHands-Versa, a generalist agent built with a modest number of general tools: code editing and execution, web search, as well as multimodal web browsing and file access. Importantly, OpenHands-Versa demonstrates superior or competitive performance over leading specialized agents across three diverse and challenging benchmarks: SWE-Bench Multimodal, GAIA, and The Agent Company, outperforming the best-performing previously published results with absolute improvements in success rate of 9.1, 1.3, and 9.1 points respectively. Further, we show how existing state-of-the-art multi-agent systems fail to generalize beyond their target domains. These results demonstrate the feasibility of developing a generalist agent to solve diverse tasks and establish OpenHands-Versa as a strong baseline for future research.
 
-## OpenHands original README
-OpenHands (formerly OpenDevin), is a platform for software development agents powered by AI.
 
-OpenHands agents can do anything a human developer can: modify code, run commands, browse the web,
-call APIs, and yes—even copy code snippets from StackOverflow.
-
-Learn more at [docs.all-hands.dev](https://docs.all-hands.dev), or jump to the [Quick Start](#-quick-start).
-
-> [!IMPORTANT]
-> Using OpenHands for work? We'd love to chat! Fill out
-> [this short form](https://docs.google.com/forms/d/e/1FAIpQLSet3VbGaz8z32gW9Wm-Grl4jpt5WgMXPgJ4EDPVmCETCBpJtQ/viewform)
-> to join our Design Partner program, where you'll get early access to commercial features and the opportunity to provide input on our product roadmap.
-
-![App screenshot](./docs/static/img/screenshot.png)
 
 ## ⚡ Quick Start
 
-The easiest way to run OpenHands is in Docker.
+The easiest way to run OpenHands-Versa is in Docker.
 See the [Running OpenHands](https://docs.all-hands.dev/modules/usage/installation) guide for
 system requirements and more information.
 
@@ -99,6 +90,10 @@ through Slack, so this is the best place to start, but we also are happy to have
 - [Read or post Github Issues](https://github.com/All-Hands-AI/OpenHands/issues) - Check out the issues we're working on, or add your own ideas.
 
 See more about the community in [COMMUNITY.md](./COMMUNITY.md) or find details on contributing in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+
+## Note
+ The methodology in OpenHands-Versa has also been implemented in upstream [OpenHands](https://github.com/All-Hands-AI/OpenHands), and we recommend using the upstream repository if you want to use OpenHands Versa in your own work.
 
 ## 📜 License
 
