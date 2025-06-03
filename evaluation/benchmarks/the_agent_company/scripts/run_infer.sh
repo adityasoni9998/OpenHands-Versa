@@ -144,10 +144,7 @@ while IFS= read -r task_image; do
         echo "Skipping $task_name - evaluation file already exists"
         continue
     fi
-    # if (( cnt % 2 == 0 )); then
-    if [[ "$task_name" == *"sde-debug-crashed-server"* ]]; then
-        continue
-    fi
+
     docker pull $task_image
 
     # Build the Python command
@@ -167,7 +164,8 @@ while IFS= read -r task_image; do
         eval "$COMMAND"
     # Prune unused images and volumes
     docker image rm "$task_image"
-    docker images "ghcr.io/all-hands-ai/runtime" -q | xargs -r docker rmi -f
+    # docker images "ghcr.io/all-hands-ai/runtime" -q | xargs -r docker rmi -f
+    docker images "ghcr.io/all-hands-ai/runtime" --filter "dangling=true" -q | xargs -r docker rmi -f
     docker volume prune -f
     docker system prune -f
     # fi
