@@ -6,7 +6,9 @@
   <img src="./docs/static/img/OpenHands-Versa.png" width="900">
 </div>
 
-This repository is a reference implementation of the paper [**Coding Agents with Multimodal Browsing are Generalist Problem Solvers**](https://arxiv.org/abs/2506.03011) containing scripts for reproducing the experiments in the paper.
+This repository is a reference implementation of the paper [**Coding Agents with Multimodal Browsing are Generalist Problem Solvers**](https://arxiv.org/abs/2506.03011) containing scripts for reproducing the experiments in the paper. 
+
+**🏆 OpenHands-Versa currently ranks #1 on SWE-Bench Multimodal and The Agent Company leaderboards.**
 
 ## Overview
 Modern human labor is characterized by specialization; we train for years and develop particular tools that allow us to perform well across a variety of tasks. In addition, AI agents have been specialized for domains such as software engineering, web navigation, and workflow automation.
