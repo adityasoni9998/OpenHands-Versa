@@ -20,7 +20,7 @@ In this work, we ask the question: what is the minimal set of general tools that
 
 
 ## Installation
-OpenHands-Versa is built on top the OpenHands - a popular framework for open-source AI Agents. Thus, the installation instructions are same as that of OpenHands. We require ``sudo`` access to the machine since experiments on [The Agent Company](https://github.com/TheAgentCompany/TheAgentCompany) need root privileges. All our experiments are run using Ubuntu OS (>=22.04) and we provide installation instructions for the same below:
+OpenHands-Versa is built on top the OpenHands - a popular framework for open-source AI Agents and the installation instructions are similar as that of OpenHands. We require ``sudo`` access to the machine since experiments on [The Agent Company](https://github.com/TheAgentCompany/TheAgentCompany) need root privileges. All our experiments are run using Ubuntu OS (>=22.04) and we provide installation instructions for the same below:
 
 ### 1. Pre-requisites:
 * [Docker](https://docs.docker.com/engine/install/ubuntu/)
@@ -46,12 +46,12 @@ make build
 ```
 
 ### 3. Configuring the Language Model
-OpenHands-Versa supports a diverse array of Language Models (LMs) through the powerful [litellm](https://docs.litellm.ai) library. We use `claude-3-7-sonnet-20250219` and `claude-sonnet-4-20250514` for our experiments You can configure your LLMs by creating a config.toml file in the project root directory similar to [config_example.toml](./config_example.toml).
+OpenHands-Versa supports a diverse array of Language Models (LMs) through the powerful [litellm](https://docs.litellm.ai) library. We use `claude-3-7-sonnet-20250219` and `claude-sonnet-4-20250514` for our experiments. You can configure the LLMs by creating a config.toml file in the project root directory similar to [config_example.toml](./config_example.toml).
 
 For details regarding support for other operating systems, support for other LLMs and debugging tips please refer to [Development.md](./Development.md).
 
 ## Reproducing Results
-We benchmark OpenHands-Versa on three diverse and challenging agent benchmarks: [GAIA](https://huggingface.co/datasets/gaia-benchmark/GAIA), [The Agent Company](https://the-agent-company.com/), and [SWE-Bench Multimodal](https://www.swebench.com/multimodal.html). For instructions about reproducing our results, please refer to the respective README.md files for [GAIA](./evaluation/benchmarks/gaia/README.md), [The Agent Company](./evaluation/benchmarks/the_agent_company/README.md) and [SWE-Bench Multimodal](./evaluation/benchmarks/swe_bench/README.md). Note that we use [Tavily](https://www.tavily.com/) API for our search tool and running the experiments requires a search API key.
+We benchmark OpenHands-Versa on three popular and challenging agent benchmarks: [GAIA](https://huggingface.co/datasets/gaia-benchmark/GAIA), [The Agent Company](https://the-agent-company.com/), and [SWE-Bench Multimodal](https://www.swebench.com/multimodal.html). For instructions about reproducing our results, please refer to the respective README.md files for [GAIA](./evaluation/benchmarks/gaia/README.md), [The Agent Company](./evaluation/benchmarks/the_agent_company/README.md) and [SWE-Bench Multimodal](./evaluation/benchmarks/swe_bench/README.md). Note that we use [Tavily](https://www.tavily.com/) API for our search tool and running the experiments requires a search API key.
 
 ## Note
 The methodology in OpenHands-Versa has also been implemented in upstream [OpenHands](https://github.com/All-Hands-AI/OpenHands), and we recommend using the upstream repository if you want to use OpenHands Versa in your own work.
