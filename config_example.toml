@@ -1,0 +1,27 @@
+[core]
+workspace_base="./workspace"
+
+[llm.claude4]
+model="claude-sonnet-4-20250514"
+api_key="<Your API Key>"
+base_url="<Base URL of API Endpoint>"
+disable_vision=false
+caching_prompt=true
+log_completions=true
+
+[llm.claude_3_7]
+model="claude-3-7-sonnet-20250219"
+api_key="<Your LLM API Key>"
+base_url="<Base URL on API endpoint>"
+disable_vision=false
+caching_prompt=true
+log_completions=true
+
+[llm.claude_3_5]
+model="claude-3-5-sonnet-20241022"
+api_key="<Your LLM API Key>"
+base_url="<Base URL on API endpoint>"
+disable_vision=false
+caching_prompt=true
+log_completions=true
+
