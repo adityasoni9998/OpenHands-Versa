@@ -5,11 +5,6 @@
   <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are Generalist Problem Solvers</h1>
   <img src="./docs/static/img/OpenHands-Versa.png" width="900">
 </div>
-<!-- <div align="center">
-  <a href="https://arxiv.org/abs/2506.03011"><img src="https://img.shields.io/badge/Paper%20on%20Arxiv-000?logoColor=FFE165&logo=arxiv&style=for-the-badge" alt="Arxiv"></a>
-  <a href="https://github.com/adityasoni9998/OpenHands-Versa/blob/main/LICENSE"><img src="https://img.shields.io/github/license/All-Hands-AI/OpenHands?style=for-the-badge&color=blue" alt="MIT License"></a>
-  <hr>
-</div> -->
 
 This repository is a reference implementation of the paper [**Coding Agents with Multimodal Browsing are Generalist Problem Solvers**](https://arxiv.org/abs/2506.03011) containing scripts for reproducing the experiments in the paper.
 
