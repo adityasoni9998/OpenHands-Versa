@@ -4,9 +4,9 @@ import json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('input_file')
-    parser.add_argument('output_file')
-    parser.add_argument('model_name', default='claude-sonnet-4')
+    parser.add_argument('--input_file')
+    parser.add_argument('--output_file')
+    parser.add_argument('--model_name', default='claude-sonnet-4')
     args = parser.parse_args()
     input_file = args.input_file
     output_file = args.output_file
