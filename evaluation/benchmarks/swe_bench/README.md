@@ -5,7 +5,7 @@ This folder contains the evaluation harness for SWE-Bench Multimodal benchmark. 
 The evaluation consists of three steps:
 
 1. Environment setup: [install python environment and configure LLM config](../../../README.md#installation). Make sure you have an API Key to Tavily Search API.
-2. [Run inference](#run-inference-on-swe-bench-instances): Generate a edit patch for each Github issue
+2. [Run inference](#run-inference-on-swe-bench-instances): Generate an edit patch for each Github issue
 3. [Evaluate patches using sb-cli](#evaluate-generated-patches)
 
 ## Setup Environment and LLM Configuration
