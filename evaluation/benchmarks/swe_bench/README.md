@@ -53,7 +53,7 @@ default, it is set to 1.
 - `dataset`, a huggingface dataset name. e.g. `princeton-nlp/SWE-bench`, `princeton-nlp/SWE-bench_Lite`, `princeton-nlp/SWE-bench_Verified`, or `princeton-nlp/SWE-bench_Multimodal`, specifies which dataset to evaluate on.
 - `dataset_split`, split for the huggingface dataset. e.g., `test`, `dev`. Default to `test`.
 
-Optionally, you can set `DEFAULT_RUNTIME_RESOURCE_FACTOR` to a higher value (like 2,4 or 8 - only multiples of 2 are allowed) than the default of 1 to use more CPU cores during inference and reduce the occurrence of runtime crashes. We set `DEFAULT_RUNTIME_RESOURCE_FACTOR` to 2 for our evaluation. Note that using a higher value of `DEFAULT_RUNTIME_RESOURCE_FACTOR` costs more API credits in the Remote Runtime API.
+Optionally, you can set the environment variable `DEFAULT_RUNTIME_RESOURCE_FACTOR` to a higher value (like 2,4 or 8 - only multiples of 2 are allowed) instead of 1 (the default value) to use more CPU cores during inference and reduce the occurrence of runtime crashes. We set `DEFAULT_RUNTIME_RESOURCE_FACTOR` to 2 for our evaluation. Note that using a higher value of `DEFAULT_RUNTIME_RESOURCE_FACTOR` costs more API credits in the Remote Runtime API.
 
 Given below is an example to run OpenHands-Versa on SWE-Bench Multimodal test set. You can configure the llm-config as required, and all other configuration parameters below are the ones used in our paper. This command runs evaluation on CodeActAgent (the default agent for OpenHands-Versa) for 517 instances on "princeton-nlp/SWE-bench_Multimodal"'s test set, with max 100 iteration per instances, with 16 workers running in parallel in the remote runtime.
 ```bash
