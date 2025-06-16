@@ -1,7 +1,7 @@
 # Evaluating OpenHands-Versa on The Agent Company
 
 
-This folder contains the evaluation harness The Agent Company benchmark. It is built on top of the original harness from [The Agent Company](https://github.com/TheAgentCompany/TheAgentCompany/tree/main/evaluation) ([paper](https://arxiv.org/abs/2412.14161)).
+This folder contains the evaluation harness for The Agent Company benchmark. It is built on top of the original harness from [The Agent Company](https://github.com/TheAgentCompany/TheAgentCompany/tree/main/evaluation) ([paper](https://arxiv.org/abs/2412.14161)).
 
 The evaluation consists of three steps:
 

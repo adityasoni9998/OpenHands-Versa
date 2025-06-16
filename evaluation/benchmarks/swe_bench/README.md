@@ -41,15 +41,11 @@ POETRY_BIN=$(which poetry) ALLHANDS_API_KEY="YOUR-API-KEY" RUNTIME=remote SANDBO
 ```
 where
 - `llm-config` is the config group name for your LLM settings, as defined in your `config.toml` , e.g. `llm.claude_3_7`
-- `git-version` is the git commit hash of the OpenHands-Versa version you would
-like to evaluate, e.g. `HEAD`
-- `agent` is the name of the agent for benchmarks, defaulting
-to `CodeActAgent`. OpenHands-Versa uses `CodeActAgent` for all its experiments.
+- `git-version` is the git commit hash of the OpenHands-Versa version you would like to evaluate, e.g. `HEAD`
+- `agent` is the name of the agent to use, defaulting to `CodeActAgent`. OpenHands-Versa uses `CodeActAgent` for all its experiments.
 - `eval_limit`, e.g. `10`, limits the evaluation to the first `eval_limit` instances. Note: in order to use `eval_limit`, you must also set `agent`.
-- `max_iter`, e.g. `20`, is the maximum number of iterations for the agent to run. By
-default, it is set to 100.
-- `num_workers`, e.g. `3`, is the number of parallel workers to run the evaluation. By
-default, it is set to 1.
+- `max_iter`, e.g. `20`, is the maximum number of iterations for the agent to run. By default, it is set to 100.
+- `num_workers`, e.g. `3`, is the number of parallel workers to run the evaluation. By default, it is set to 1.
 - `dataset`, a huggingface dataset name. e.g. `princeton-nlp/SWE-bench`, `princeton-nlp/SWE-bench_Lite`, `princeton-nlp/SWE-bench_Verified`, or `princeton-nlp/SWE-bench_Multimodal`, specifies which dataset to evaluate on.
 - `dataset_split`, split for the huggingface dataset. e.g., `test`, `dev`. Default to `test`.
 
