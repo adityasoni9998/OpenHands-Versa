@@ -44,11 +44,11 @@ For very few cases (~10-15 out of 300 test samples), the OpenHands-Versa agent m
 
 ```bash
 # Find all crashed instances and remove them from output.jsonl file
-sudo -E python3 find_errors.py [output_path]
+sudo -E python3 evaluation/benchmarks/gaia/find_errors.py [output_path]
 ```
 - `output_path`, path to output.jsonl file. You can find the output.jsonl file inside the directory: `evaluation/evaluation_outputs/outputs/gaia/...`.
 
-After removing the crashed instances, you can simply re-run the command for starting evaluation using `run_infer.sh`. You can repeat this process many times till all errors are not resolved, but in practice we find that we don't need to re-run more than thrice. Also, some instances may still crash even after all re-runs, and our scripts report an empty string answer for such instances.
+After removing the crashed instances, you can simply re-run the command for starting evaluation using `run_infer.sh`. You can repeat this process many times till all errors are not resolved, but in practice we find that we don't need to re-run more than thrice. Also, if some instances may still crash even after all re-runs, you can choose not to remove them from output.jsonl file and using it directly instead of running the above command.
 
 ## Extract and Reformat Answer
 Since GAIA performs string matching to compute accuracy and requires the agent's answer to match exactly with the ground truth, we use a simple LLM-based inference strategy that rephrases the answer if it doesn't follow the formatting instructions given in the task. For example, this approach will help with cases where the task asks that the numerical answer must be written in plain-text (eg: five hundred) but the agent answered in digits (eg: 500).

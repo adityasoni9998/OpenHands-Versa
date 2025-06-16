@@ -43,7 +43,10 @@ Final thought of AI Agent: {agent_output}
 
 Please respond in JSON format as mentioned in the SYSTEM prompt.
 """.strip()
-
+    base_url = os.environ.get('LITELLM_BASE_URL')
+    api_key = os.environ.get('LITELLM_API_KEY')
+    assert base_url is not None, 'LITELLM_BASE_URL environment variable is not set.'
+    assert api_key is not None, 'LITELLM_API_KEY environment variable is not set.'
     response = litellm.completion(
         model=model,
         messages=[
