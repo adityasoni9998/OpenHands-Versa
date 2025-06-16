@@ -56,7 +56,7 @@ Since GAIA performs string matching to compute accuracy and requires the agent's
 ```bash
 export LITELLM_BASE_URL="<Base URL of Your LLM API Endpoint>"
 export LITELLM_API_KEY="<API Key of your LLM API Endpoint>"
-python evaluation/benchmarks/gaia/process_answer.py --input-filename "<Path to output.jsonl file>" --output-filename "Path of the JSONL file where you want to save the processed outputs, eg: ./model_outputs_processed.jsonl" --model "LLM to use for reformatting answers (We use claude-3.7-sonnet for all our experiments)"
+poetry run python evaluation/benchmarks/gaia/process_answer.py --input-filename "<Path to output.jsonl file>" --output-filename "Path of the JSONL file where you want to save the processed outputs, eg: ./model_outputs_processed.jsonl" --model "LLM to use for reformatting answers (We use claude-3.7-sonnet for all our experiments)"
 ```
 
 The above command will create a JSONL file which can be submitted to GAIA leaderboard for test set. The printed score in stdout will be correct only for the validation split and not the test split since ground-truth answers for test split are not open-source.
