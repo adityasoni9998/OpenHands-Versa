@@ -32,7 +32,7 @@ fi
 
 if [ -z "$RUN_WITH_BROWSING" ]; then
   echo "RUN_WITH_BROWSING not specified, use default false"
-  RUN_WITH_BROWSING=false
+  RUN_WITH_BROWSING=true
 fi
 
 
