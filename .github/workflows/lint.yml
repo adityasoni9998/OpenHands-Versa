@@ -21,7 +21,7 @@ jobs:
     name: Lint frontend
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -41,7 +41,7 @@ jobs:
     name: Lint python
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Set up python
@@ -59,7 +59,7 @@ jobs:
     name: Check version consistency
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up python
         uses: actions/setup-python@v5
         with:
