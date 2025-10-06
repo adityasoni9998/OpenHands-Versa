@@ -2,19 +2,15 @@
 
 
 <div align="center">
-  <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are Generalist Problem Solvers</h1>
+  <h1 align="center">OpenHands-Versa: Coding Agents with Multimodal Browsing are General-Purpose Problem Solvers</h1>
   <img src="./docs/static/img/OpenHands-Versa.png" width="900">
 </div>
 
-This repository is a reference implementation of the paper [**Coding Agents with Multimodal Browsing are Generalist Problem Solvers**](https://arxiv.org/abs/2506.03011) containing scripts for reproducing the experiments in the paper.
-
-**🏆 OpenHands-Versa currently ranks #1 on SWE-Bench Multimodal and The Agent Company leaderboards.**
+This repository is a reference implementation of the paper **Coding Agents with Multimodal Browsing are General-Purpose Problem Solvers** containing scripts for reproducing the experiments in the paper.
 
 ## Overview
-Modern human labor is characterized by specialization; we train for years and develop particular tools that allow us to perform well across a variety of tasks. In addition, AI agents have been specialized for domains such as software engineering, web navigation, and workflow automation.
-However, this results in agents that are good for one thing but fail to generalize beyond their intended scope. One reason for this is that agent developers provide a highly specialized set of tools or make architectural decisions optimized for a specific use case or benchmark.
-In this work, we ask the question: what is the minimal set of general tools that can be used to achieve high performance across a diverse set of tasks? Our answer is OpenHands-Versa, a generalist agent built with a modest number of general tools: code editing and execution, web search, as well as multimodal web browsing and file access. Importantly, OpenHands-Versa demonstrates superior or competitive performance over leading specialized agents across three diverse and challenging benchmarks: SWE-Bench Multimodal, GAIA, and The Agent Company, outperforming the best-performing previously published results with absolute improvements in success rate of 9.1, 1.3, and 9.1 points respectively. Further, we show how existing state-of-the-art multi-agent systems fail to generalize beyond their target domains. These results demonstrate the feasibility of developing a generalist agent to solve diverse tasks and establish OpenHands-Versa as a strong baseline for future research.
-
+Modern human labor is characterized by specialization; we train for years and develop particular tools that allow us to perform well across a variety of tasks. Similarly, specialized AI agents with task-specific tools or architectures often fail to generalize beyond their intended scope. In this work, we ask: *what is the minimal set of general tools for achieving generalizability across diverse domains?* We propose OpenHands-Versa, a single-agent system with a modest number of general tools like code execution, search engine, web browser and multimodal file viewer, for three practical domains: software engineering, deep research, and web browsing. Notably, OpenHands-Versa demonstrates superior or competitive performance over task-specific specialized agents on three challenging benchmarks: SWE-Bench Multimodal, GAIA, and The Agent Company, with absolute improvements in success rate of **9.1**, **1.3**, and **9.1** points, respectively. 
+Thus, our minimal *single-agent* system can achieve strong generalization indicating that specialist agents provide no practical benefit. Furthermore, we find that specialist multi-agent systems do not generalize beyond their intended scope. These findings establish OpenHands-Versa as a strong baseline for future research.
 
 ## Installation and LLM Configuration
 OpenHands-Versa is built on top the OpenHands - a popular framework for open-source AI Agents and the installation instructions are similar as that of OpenHands. We require ``sudo`` access to the machine since experiments on [The Agent Company](https://github.com/TheAgentCompany/TheAgentCompany) need root privileges. All our experiments are run using Ubuntu OS (>=22.04) and we provide installation instructions for the same below:
@@ -51,22 +47,7 @@ For details regarding support for other operating systems, support for other LLM
 ## Reproducing Results
 We benchmark OpenHands-Versa on three popular and challenging agent benchmarks: [GAIA](https://huggingface.co/datasets/gaia-benchmark/GAIA), [The Agent Company](https://the-agent-company.com/), and [SWE-Bench Multimodal](https://www.swebench.com/multimodal.html). For instructions about reproducing our results, please refer to the respective README.md files for [GAIA](./evaluation/benchmarks/gaia/README.md), [The Agent Company](./evaluation/benchmarks/the_agent_company/README.md) and [SWE-Bench Multimodal](./evaluation/benchmarks/swe_bench/README.md). Note that we use [Tavily](https://www.tavily.com/) API for our search tool and running the experiments requires a search API key.
 
-## Note
-The methodology in OpenHands-Versa has also been implemented in upstream [OpenHands](https://github.com/All-Hands-AI/OpenHands), and we recommend using the upstream repository if you want to use OpenHands Versa in your own work.
-
 ## 📜 License
 
 Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
 
-## 📚 Cite
-```
-@misc{soni2025codingagentsmultimodalbrowsing,
-      title={Coding Agents with Multimodal Browsing are Generalist Problem Solvers},
-      author={Aditya Bharat Soni and Boxuan Li and Xingyao Wang and Valerie Chen and Graham Neubig},
-      year={2025},
-      eprint={2506.03011},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2506.03011},
-}
-```
